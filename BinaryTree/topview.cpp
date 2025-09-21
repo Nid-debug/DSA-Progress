@@ -18,10 +18,10 @@ public:
     vector<int> topViewWithMap(TreeNode *root)
     {
         vector<int> result;
-        if (root == NULL) return result;
+        if (root == nullptr) return result;
 
         map<int, int> mp;               // (hd -> value), sorted automatically
-        queue<pair<TreeNode *, int>> q; // (node, horizontal distance)
+        queue<pair<TreeNode*, int>> q; // (node, horizontal distance)
         q.push({root, 0});
 
         while (!q.empty())
