@@ -18,8 +18,7 @@ public:
     vector<int> topViewWithMap(TreeNode *root)
     {
         vector<int> result;
-        if (!root)
-            return result;
+        if (root == NULL) return result;
 
         map<int, int> mp;               // (hd -> value), sorted automatically
         queue<pair<TreeNode *, int>> q; // (node, horizontal distance)
@@ -57,8 +56,7 @@ public:
     vector<int> topViewWithUnorderedMap(TreeNode *root)
     {
         vector<int> result;
-        if (!root)
-            return result;
+        if (root == nullptr) return result;
 
         unordered_map<int, int> mp;     // (hd -> value)
         queue<pair<TreeNode *, int>> q; // (node, hd)
