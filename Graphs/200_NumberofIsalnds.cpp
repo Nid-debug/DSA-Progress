@@ -45,7 +45,7 @@ int main() {
     };
 
     int result = s.numIslands(grid);
-    cout << "Total Number of Islands is: " << result << endl;  
+    cout << "Total Number of Islands is: " << result << endl;  //3
 
     return 0;
 }
