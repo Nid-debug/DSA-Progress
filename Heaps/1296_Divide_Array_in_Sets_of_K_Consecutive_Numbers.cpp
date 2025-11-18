@@ -3,8 +3,8 @@
 #include <map>
 using namespace std;
 
-// Time: O(n log n) because of sorting
-// Space: O(n) for the frequency map
+// Time Complexity: O(n log n) because of sorting
+// Space Complexity: O(n) for the frequency map
 
 class Solution {
 public:
