@@ -3,6 +3,10 @@
 // Overall Time Complexity: O(2^n * n)
 // Overall Space Complexity: O(n) auxiliary (excluding output)
 
+#include <iostream>
+#include <vector>
+using namespace std;
+
 class Solution {
 public:
     vector<vector<string>> partition(string s) {
