@@ -1,2 +1,2 @@
 # DSA-Progress
-My Data Structures &amp; Algorithms practice in C++ - organized by topic LeetCode 
+My Data Structures & Algorithms practice in C++ - organized by topic LeetCode 
