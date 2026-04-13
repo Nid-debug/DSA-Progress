@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <numeric>
 using namespace std;
 
 /*
@@ -30,11 +31,7 @@ public:
 
     int shipWithinDays(vector<int>& weights, int days) {
         long long low = *max_element(weights.begin(), weights.end());
-        long long high = 0;
-
-        for (int w : weights) {
-            high += w;
-        }
+        long long high = accumulate(weights.begin(), weights.end(), 0LL);
 
         while (low < high) {
             long long mid = low + (high - low) / 2;
