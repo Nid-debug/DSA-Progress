@@ -1,9 +1,13 @@
-// LeetCode 121. Best Time to Buy and Sell Stock
-// Category: Arrays, Dynamic Programming
-// Problem: Given an array prices where prices[i] is the stock price on day i,
-// find the maximum profit you can achieve by choosing a day to buy and a later day to sell.
+/* 
+LeetCode 121. Best Time to Buy and Sell Stock
+Dynamic Programming Problem: Given an array prices where prices[i] is the stock price on day i, 
+find the maximum profit you can achieve by choosing a day to buy and a later day to sell.
+Time Complexity: O(n)
+Space Complexity: O(1)
+*/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 class Solution {
@@ -40,23 +44,3 @@ public:
         return maxProfit;
     }
 };
-
-// Example usage
-int main() {
-    Solution sol;
-    vector<int> prices = {7, 1, 5, 3, 6, 4};
-
-    cout << "Approach 1 (Min price tracking): " << sol.maxProfit(prices) << endl;
-    cout << "Approach 2 (Kadane's Algorithm): " << sol.maxProfitKadane(prices) << endl;
-
-    return 0;
-}
-
-/*
-Output:
-Approach 1 (Min price tracking): 5
-Approach 2 (Kadane's Algorithm): 5
-
-Time Complexity: O(n)
-Space Complexity: O(1)
-*/
