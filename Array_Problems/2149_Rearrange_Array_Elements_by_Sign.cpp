@@ -1,4 +1,6 @@
 // Problem: 2149. Rearrange Array Elements by Sign
+// Time Complexity = O(N)
+// Space Complexity = O(N)
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -24,15 +26,3 @@ public:
         return ans;
     }
 };
-
-// Example run
-int main() {
-    Solution sol;
-    vector<int> nums = {3, 1, -2, -5, 2, -4};
-    vector<int> result = sol.rearrangeArray(nums);
-
-    cout << "Rearranged Array: ";
-    for (int x : result) cout << x << " ";
-    cout << endl;
-    return 0;
-}
