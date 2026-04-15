@@ -25,15 +25,19 @@ using namespace std;
     Space Complexity: O(n^2) + recursion stack
 =========================================================*/
 
-class SolutionMemo {
+class SolutionMemo
+{
 private:
-    int solve(int row, int col, vector<vector<int>>& triangle, vector<vector<int>>& dp) {
+    int solve(int row, int col, vector<vector<int>> &triangle, vector<vector<int>> &dp)
+    {
 
         // Base case: Last row
-        if (row == triangle.size() - 1) return triangle[row][col];
+        if (row == triangle.size() - 1)
+            return triangle[row][col];
 
         // Already computed
-        if (dp[row][col] != -1) return dp[row][col];
+        if (dp[row][col] != -1)
+            return dp[row][col];
 
         int down = triangle[row][col] + solve(row + 1, col, triangle, dp);
 
@@ -43,7 +47,8 @@ private:
     }
 
 public:
-    int minimumTotal(vector<vector<int>>& triangle) {
+    int minimumTotal(vector<vector<int>> &triangle)
+    {
 
         int n = triangle.size();
         vector<vector<int>> dp(n, vector<int>(n, -1));
@@ -52,29 +57,33 @@ public:
     }
 };
 
-
 /*=========================================================
     Approach 2: Tabulation (Bottom-Up DP)
     Time Complexity: O(n^2)
     Space Complexity: O(n^2)
 =========================================================*/
 
-class SolutionTab {
+class SolutionTab
+{
 public:
-    int minimumTotal(vector<vector<int>>& triangle) {
+    int minimumTotal(vector<vector<int>> &triangle)
+    {
 
         int n = triangle.size();
 
         vector<vector<int>> dp(n, vector<int>(n, 0));
 
         // Base case: copy last row
-        for (int col = 0; col < triangle[n - 1].size(); col++) {
+        for (int col = 0; col < triangle[n - 1].size(); col++)
+        {
             dp[n - 1][col] = triangle[n - 1][col];
         }
 
         // Fill from bottom to top
-        for (int row = n - 2; row >= 0; row--) {
-            for (int col = 0; col <= row; col++) {
+        for (int row = n - 2; row >= 0; row--)
+        {
+            for (int col = 0; col <= row; col++)
+            {
 
                 int down = dp[row + 1][col];
                 int diagonal = dp[row + 1][col + 1];
@@ -86,16 +95,17 @@ public:
     }
 };
 
-
 /*=========================================================
     Approach 3: Space Optimization (1D DP)
     Time Complexity: O(n^2)
     Space Complexity: O(n)
 =========================================================*/
 
-class SolutionSpaceOptimized {
+class SolutionSpaceOptimized
+{
 public:
-    int minimumTotal(vector<vector<int>>& triangle) {
+    int minimumTotal(vector<vector<int>> &triangle)
+    {
 
         int n = triangle.size();
 
@@ -103,8 +113,10 @@ public:
         vector<int> dp = triangle[n - 1];
 
         // Move upwards
-        for (int row = n - 2; row >= 0; row--) {
-            for (int col = 0; col <= row; col++) {
+        for (int row = n - 2; row >= 0; row--)
+        {
+            for (int col = 0; col <= row; col++)
+            {
 
                 dp[col] = triangle[row][col] + min(dp[col], dp[col + 1]);
             }
@@ -112,21 +124,3 @@ public:
         return dp[0];
     }
 };
-
-
-/*=========================================================
-    Main Function (For Local Testing)
-=========================================================*/
-
-int main() {
-    vector<vector<int>> triangle = {{2},{3, 4},{6, 5, 7},{4, 1, 8, 3}};
-    SolutionMemo memo;
-    SolutionTab tab;
-    SolutionSpaceOptimized spaceOpt;
-
-    cout << "Memoization: " << memo.minimumTotal(triangle) << endl;
-    cout << "Tabulation: " << tab.minimumTotal(triangle) << endl;
-    cout << "Space Optimized: " << spaceOpt.minimumTotal(triangle) << endl;
-
-    return 0;
-}
