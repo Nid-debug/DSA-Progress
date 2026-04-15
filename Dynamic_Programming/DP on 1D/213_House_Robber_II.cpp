@@ -21,7 +21,6 @@ We show two approaches:
 ===================================================
 */
 
-
 /*
 ---------------------------------------------------
 Approach 1: Memoization (Top-Down DP)
@@ -30,13 +29,18 @@ Space: O(n) + recursion stack
 ---------------------------------------------------
 */
 
-class SolutionMemo {
+class SolutionMemo
+{
 private:
-    int solve(int i, int start, const vector<int>& nums, vector<int>& dp) {
-        if (i == start) return nums[start];
-        if (i < start) return 0;
+    int solve(int i, int start, const vector<int> &nums, vector<int> &dp)
+    {
+        if (i == start)
+            return nums[start];
+        if (i < start)
+            return 0;
 
-        if (dp[i] != -1) return dp[i];
+        if (dp[i] != -1)
+            return dp[i];
 
         int pick = nums[i] + solve(i - 2, start, nums, dp);
         int notPick = solve(i - 1, start, nums, dp);
@@ -45,10 +49,13 @@ private:
     }
 
 public:
-    int rob(const vector<int>& nums) {
+    int rob(const vector<int> &nums)
+    {
         int n = nums.size();
-        if (n == 1) return nums[0];
-        if (n == 2) return max(nums[0], nums[1]);
+        if (n == 1)
+            return nums[0];
+        if (n == 2)
+            return max(nums[0], nums[1]);
 
         vector<int> dp1(n, -1);
         vector<int> dp2(n, -1);
@@ -63,7 +70,6 @@ public:
     }
 };
 
-
 /*
 ---------------------------------------------------
 Approach 2: Space Optimized DP
@@ -72,17 +78,21 @@ Space: O(1)
 ---------------------------------------------------
 */
 
-class Solution {
+class Solution
+{
 private:
-    int solveRange(int start, int end, const vector<int>& nums) {
+    int solveRange(int start, int end, const vector<int> &nums)
+    {
         int n = end - start + 1;
 
-        if (n == 1) return nums[start];
+        if (n == 1)
+            return nums[start];
 
         int prev2 = nums[start];
         int prev1 = max(nums[start], nums[start + 1]);
 
-        for (int i = 2; i < n; i++) {
+        for (int i = 2; i < n; i++)
+        {
             int pick = nums[start + i] + prev2;
             int notPick = prev1;
 
@@ -96,10 +106,13 @@ private:
     }
 
 public:
-    int rob(const vector<int>& nums) {
+    int rob(const vector<int> &nums)
+    {
         int n = nums.size();
-        if (n == 1) return nums[0];
-        if (n == 2) return max(nums[0], nums[1]);
+        if (n == 1)
+            return nums[0];
+        if (n == 2)
+            return max(nums[0], nums[1]);
 
         int case1 = solveRange(0, n - 2, nums);
         int case2 = solveRange(1, n - 1, nums);
@@ -107,16 +120,3 @@ public:
         return max(case1, case2);
     }
 };
-
-
-int main() {
-    vector<int> nums = {2, 3, 2};
-
-    SolutionMemo memo;
-    Solution spaceOpt;
-
-    cout << "Memoization: " << memo.rob(nums) << endl;
-    cout << "Space Optimized: " << spaceOpt.rob(nums) << endl;
-
-    return 0;
-}
