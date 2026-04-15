@@ -23,25 +23,32 @@ using namespace std;
     Space Complexity: O(n * amount) + O(n)
 =========================================================*/
 
-class Solution {
+class Solution
+{
 public:
-    int solve(int idx, int amount, vector<int>& coins, vector<vector<int>>& dp) {
+    int solve(int idx, int amount, vector<int> &coins, vector<vector<int>> &dp)
+    {
 
         // Base cases
-        if (amount == 0) return 1;
-        if (idx < 0 || amount < 0) return 0;
+        if (amount == 0)
+            return 1;
+        if (idx < 0 || amount < 0)
+            return 0;
 
         // Memo check
-        if (dp[idx][amount] != -1) return dp[idx][amount];
+        if (dp[idx][amount] != -1)
+            return dp[idx][amount];
 
         int notTake = solve(idx - 1, amount, coins, dp);
         int take = 0;
-        if (coins[idx] <= amount) take = solve(idx, amount - coins[idx], coins, dp);
+        if (coins[idx] <= amount)
+            take = solve(idx, amount - coins[idx], coins, dp);
 
         return dp[idx][amount] = take + notTake;
     }
 
-    int change(int amount, vector<int>& coins) {
+    int change(int amount, vector<int> &coins)
+    {
 
         int n = coins.size();
         vector<vector<int>> dp(n, vector<int>(amount + 1, -1));
@@ -56,25 +63,33 @@ public:
     Space Complexity: O(n * amount)
 =========================================================*/
 
-class SolutionTab {
+class SolutionTab
+{
 public:
-    int change(int amount, vector<int>& coins) {
+    int change(int amount, vector<int> &coins)
+    {
 
         int n = coins.size();
         vector<vector<int>> dp(n, vector<int>(amount + 1, 0));
 
         // Base case
-        for (int amt = 0; amt <= amount; amt++) {
-            if (coins[0] == 0) return 0;  // Edge case
-            if (amt % coins[0] == 0) dp[0][amt] = 1;
+        for (int amt = 0; amt <= amount; amt++)
+        {
+            if (coins[0] == 0)
+                return 0; // Edge case
+            if (amt % coins[0] == 0)
+                dp[0][amt] = 1;
         }
 
-        for (int idx = 1; idx < n; idx++) {
-            for (int amt = 0; amt <= amount; amt++) {
+        for (int idx = 1; idx < n; idx++)
+        {
+            for (int amt = 0; amt <= amount; amt++)
+            {
 
                 int notTake = dp[idx - 1][amt];
                 int take = 0;
-                if (coins[idx] <= amt) take = dp[idx][amt - coins[idx]];
+                if (coins[idx] <= amt)
+                    take = dp[idx][amt - coins[idx]];
 
                 dp[idx][amt] = take + notTake;
             }
@@ -89,24 +104,31 @@ public:
     Space Complexity: O(amount)
 =========================================================*/
 
-class SolutionSpace {
+class SolutionSpace
+{
 public:
-    int change(int amount, vector<int>& coins) {
+    int change(int amount, vector<int> &coins)
+    {
 
         int n = coins.size();
         vector<int> prev(amount + 1, 0);
 
         // Base case
-        for (int amt = 0; amt <= amount; amt++) {
-            if (amt % coins[0] == 0) prev[amt] = 1;
+        for (int amt = 0; amt <= amount; amt++)
+        {
+            if (amt % coins[0] == 0)
+                prev[amt] = 1;
         }
 
-        for (int idx = 1; idx < n; idx++) {
-            for (int amt = 0; amt <= amount; amt++) {
+        for (int idx = 1; idx < n; idx++)
+        {
+            for (int amt = 0; amt <= amount; amt++)
+            {
 
                 int notTake = prev[amt];
                 int take = 0;
-                if (coins[idx] <= amt) take = prev[amt - coins[idx]];
+                if (coins[idx] <= amt)
+                    take = prev[amt - coins[idx]];
 
                 prev[amt] = take + notTake;
             }
@@ -114,21 +136,3 @@ public:
         return prev[amount];
     }
 };
-
-/*=========================================================
-    Main Function (For Local Testing)
-=========================================================*/
-
-int main() {
-    Solution sol;
-    SolutionTab tab;
-    SolutionSpace spa;
-
-    int amount = 5;
-    vector<int> coins = {1, 2, 5};
-
-    cout << "Memoization: " << sol.change(amount, coins) << endl;
-    cout << "Tabulation: " << tab.change(amount, coins) << endl;
-    cout << "Space Optimized: " << spa.change(amount, coins) << endl;
-    return 0;
-}
