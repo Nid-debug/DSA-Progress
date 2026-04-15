@@ -3,6 +3,7 @@
 This repository documents my journey of rebuilding my DP intuition after realizing I was relying too much on patterns without understanding state transitions.
 
 ## 🛠 My Problem-Solving Workflow
+
 For every challenge, I follow a systematic approach:
 
 1. **State Definition:** Clearly defining what each DP state represents.
@@ -14,22 +15,38 @@ For every challenge, I follow a systematic approach:
 
 ## 📂 Pattern Categorization
 
-### 📈 [DP on Stocks](./DP%20on%20Stocks)
+### 📏 [DP on 1D Arrays]
+
+- Linear transitions and space optimization.
+- Core Idea: Solving the current step using the results of n-1 or n-2 previous steps.
+
+### 🗺️ [DP on Grids]
+
+- Fixed and variable start/end problems
+- Pathfinding with min/max cost
+
+### 🧵 [DP on Strings & Subsequences]
+
+- LCS, Edit Distance, String Matching
+- Subset Sum & Partition problems
+
+### 📈 [DP on Stocks]
+
 Comprehensive solutions for the LeetCode Stock series:
-* Best Time to Buy/Sell I & II
-* Best Time to Buy/Sell III & IV (k transactions)
-* Cooldown & Transaction Fees (state machine approach)
 
-### 🗺️ [DP on Grids](./DP%20on%20Grids-2D-3D)
-* Fixed and variable start/end problems
-* Pathfinding with min/max cost
+- Best Time to Buy/Sell I & II
+- Best Time to Buy/Sell III & IV (k transactions)
+- Cooldown & Transaction Fees (state machine approach)
 
-### 🧵 [DP on Strings & Subsequences](./DP%20on%20Strings%20and%20Subsequences)
-* LCS, Edit Distance, String Matching
-* Subset Sum & Partition problems
+### 🔢 [DP on LIS]
 
-### 🔢 [DP on LIS](./DP%20on%20LIS)
-* LIS and its variations
+- LIS and its variations
+
+### 🔢 [DP on MCM]
+
+- Solving for ranges [i..j].
+- Workflow: Identify the "last action" performed in the range to set up the recurrence.
+- Problems: Matrix Multiplication, Palindromic Partitioning, Optimal Binary Search Tree.
 
 ---
 
