@@ -31,8 +31,8 @@ Steps:
 -----------------------------------------------------------
 ⏱ Complexity:
 -----------------------------------------------------------
-Time  : O(V + E + V log V) // the sort at the end adds V log V
-Space : O(V + E)
+Time  : O(V + E + V log V) — the sort at the end adds V log V
+Space : O(V + E) — reversed adjacency list
 ===========================================================
 */
 
